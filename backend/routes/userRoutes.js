@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser } from "../controllers/userController.js";
+import { bookVisit, createUser } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -8,4 +8,7 @@ const router = express.Router();
 
 router.post("/register", createUser);
 
-export { router as userRoute}
+// book a property the API method is post
+router.post("/bookVisit/:id", bookVisit);
+
+export { router as userRoute };
