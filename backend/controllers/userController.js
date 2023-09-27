@@ -41,3 +41,47 @@ export const bookVisit = asyncHandler(async (req, res) => {
     throw new Error(err.message);
   }
 });
+
+// get all bookings of certain user
+export const allBookings = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  try {
+    const bookings = await prisma.user.findUnique({
+      where: { email },
+      select: { bookedVisits: true },
+    });
+    res.status(200).send(bookings)
+  } catch (err) {
+    throw new Error(err.message);
+  }
+});
+
+// cancel bookings
+export const cancelBooking = asyncHandler(async(req, res) => {
+  const { email } = req.body;
+  const {id} = req.params;
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {email: email},
+      select: {bookedVisits: true}
+    })
+    const index = user.bookedVisits.findIndex((visit) => visit.id === id)
+    if (index === -1){
+      res.status(400).json({message: "No such booking"})
+    } else {
+      user.bookedVisits.splice(index, 1)
+      await prisma.user.update({
+        where: {email},
+        data: {
+          bookedVisits: user.bookedVisits
+        }
+      })
+      res.send("Booking canceled successfully")
+    }
+    
+  } catch (err) {
+    throw new Error(err.message)
+    
+  }
+})
