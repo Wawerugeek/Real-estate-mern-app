@@ -1,9 +1,11 @@
 import express from "express";
 import {
   allBookings,
+  allFav,
   bookVisit,
   cancelBooking,
   createUser,
+  fav,
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -21,5 +23,11 @@ router.get("/allBookings", allBookings);
 
 // cancel a bookinhg
 router.post("/removeBooking/:id", cancelBooking);
+
+// add to favourite bookings
+router.post("/toFav/:rid", fav);
+
+// get all favourite residencies
+router.get("/allFav", allFav);
 
 export { router as userRoute };
