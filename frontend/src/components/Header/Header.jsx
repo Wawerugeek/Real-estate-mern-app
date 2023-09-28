@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { BiMenuAltRight } from "react-icons/bi";
 import { getMenuStyles } from "../../utils/common";
-import useHeaderColor from "../../hooks/useHeaderColor";
+import useHeaderColor from "../hooks/useHeaderColor";
 import OutsideClickHandler from "react-outside-click-handler";
 
 const Header = () => {
