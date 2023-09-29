@@ -26,7 +26,7 @@ model Residency {
     city        String
     country     String
     image       String
-    facilities  String
+    facilities  Json
     userEmail   String
     owner       User     @relation("Owner", fields: [userEmail], references: [email])
     createdAt   DateTime @default(now())
