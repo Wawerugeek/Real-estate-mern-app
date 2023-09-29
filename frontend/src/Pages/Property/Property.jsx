@@ -7,6 +7,7 @@ import { PuffLoader } from "react-spinners";
 import { AiFillHeart, AiTwotoneCar } from "react-icons/ai";
 import { MdMeetingRoom, MdLocationPin } from "react-icons/md";
 import { FaShower } from "react-icons/fa";
+import Map from "../../components/Map/Map";
 
 const Property = () => {
   // get the property id
@@ -92,7 +93,12 @@ const Property = () => {
           </div>
 
           {/* the right side */}
-          <div className="flexStart"></div>
+          <div className="map">
+            <Map address={data?.address} city={data?.city} country={data?.country}/>
+
+
+
+          </div>
         </div>
       </div>
     </div>
