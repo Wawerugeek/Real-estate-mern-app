@@ -4,7 +4,9 @@ import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
 import { getProperty } from "../../utils/api";
 import { PuffLoader } from "react-spinners";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiTwotoneCar } from "react-icons/ai";
+import { MdMeetingRoom, MdLocationPin } from "react-icons/md";
+import { FaShower } from "react-icons/fa";
 
 const Property = () => {
   // get the property id
@@ -54,26 +56,43 @@ const Property = () => {
             </div>
             {/* facilities available */}
             <div className="flexStart facilities">
-                {/* bathrooms */}
-                <div className="flexStart facility">
-                    <FaShower size={20} color="#1F3E72" />
-                    <span> {data?.facilities?.bathrooms} BathRooms </span>
-                </div>
-                {/* parkings */}
-                <div className="flexStart facility">
-                    
-                </div>
-                <div className="flexStart facility">
-                    
-                </div>
+              {/* bathrooms */}
+              <div className="flexStart facility">
+                <FaShower size={20} color="#1F3E72" />
+                <span> {data?.facilities?.bathrooms} BathRooms </span>
+              </div>
+              {/* parkings */}
+              <div className="flexStart facility">
+                <AiTwotoneCar size={20} color="#1F3E72" />
+                <span> {data?.facilities?.parkings} Parking</span>
+              </div>
+              {/* rooms */}
+              <div className="flexStart facility">
+                <MdMeetingRoom size={20} color="#1F3E72" />
+                <span> {data?.facilities?.bedrooms} Room/s</span>
+              </div>
             </div>
-
+            {/* description */}
+            <span className="secondaryText" style={{ textAlign: "justify" }}>
+              {data?.description}
+            </span>
+            {/* address */}
+            <div className="flexStart" style={{gap: "1rem"}}>
+              <MdLocationPin size={25} />
+              <span className="secondaryText" >
+                {data?.address}
+                {data?.city}
+                {data?.country}
+              </span>
+            </div>
+            {/* booking button */}
+            <button className="button">
+                Book your visit
+            </button>
           </div>
-
 
           {/* the right side */}
-          <div className="flexStart">
-          </div>
+          <div className="flexStart"></div>
         </div>
       </div>
     </div>
