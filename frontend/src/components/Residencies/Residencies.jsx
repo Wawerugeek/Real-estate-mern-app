@@ -1,12 +1,31 @@
 import React from "react";
-import data from "../../utils/slider.json";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "./Residencies.css";
 import { sliderSettings } from "../../utils/common";
 import PropertyCard from "../PropertyCard.css/PropertyCard";
+import useProperties from "../hooks/useProperties";
+import { PuffLoader } from "react-spinners";
+
+
 const Residencies = () => {
+  const { data, isError, isLoading } = useProperties();
+
+  if (isError) {
+    return (
+      <div className="wrapper">
+        <span> Error while fetching data from the server</span>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="wrapper flexCenter" style={{ height: "60vh" }}>
+        <PuffLoader />
+      </div>
+    );
+  }
   return (
     <div id="residencies" className="r-wrapper">
       <div className="paddings innerWidth r-container">
@@ -17,7 +36,7 @@ const Residencies = () => {
         <Swiper {...sliderSettings}>
           <SlideNextButton />
           {/* slider */}
-          {data.map((card, i) => (
+          {data.slice(0, 8).map((card, i) => (
             <SwiperSlide key={i}>
               <PropertyCard card={card} />
             </SwiperSlide>

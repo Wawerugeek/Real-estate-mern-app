@@ -5,17 +5,19 @@
     max-width: max-content;
     margin: auto;
     transition: all 300ms ease-in;
+    z-index: 0;
   }
   .r-card>svg{
     position: absolute;
     top: 25px;
     right: 30px;
-    z-index: 0.5;
+    z-index: 1;
   }
   
   .r-card > img {
-    width: 100%;
-    max-width: 15rem;
+    width: 15rem;
+    height: 10rem;
+    border-radius: 10px;
   }
   .r-card > :nth-child(3) {
     font-size: 1.2rem;
