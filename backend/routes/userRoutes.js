@@ -7,13 +7,14 @@ import {
   createUser,
   fav,
 } from "../controllers/userController.js";
+import jwtCheck from "../config/auth0Config.js";
 
 const router = express.Router();
 
 // register a user
 // method is post
 
-router.post("/register", createUser);
+router.post("/register", jwtCheck, createUser);
 
 // book a property the API method is post
 router.post("/bookVisit/:id", bookVisit);
