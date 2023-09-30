@@ -17,18 +17,18 @@ const router = express.Router();
 router.post("/register", jwtCheck, createUser);
 
 // book a property the API method is post
-router.post("/bookVisit/:id", bookVisit);
+router.post("/bookVisit/:id", jwtCheck, bookVisit);
 
 // get bookings of certain user API method is get
 router.get("/allBookings", allBookings);
 
 // cancel a bookinhg
-router.post("/removeBooking/:id", cancelBooking);
+router.post("/removeBooking/:id", jwtCheck, cancelBooking);
 
 // add to favourite bookings
-router.post("/toFav/:rid", fav);
+router.post("/toFav/:rid", jwtCheck, fav);
 
 // get all favourite residencies
-router.get("/allFav", allFav);
+router.get("/allFav", jwtCheck, allFav);
 
 export { router as userRoute };

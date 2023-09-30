@@ -4,12 +4,13 @@ import {
   getAllResidencies,
   getResidency,
 } from "../controllers/residencyController.js";
+import jwtCheck from "../config/auth0Config.js";
 
 const router = express.Router();
 
 // register a residence/ make an endpoint
 // method is post
-router.post("/create", createResidency);
+router.post("/create", jwtCheck, createResidency);
 
 // get all residencies route
 router.get("/allresidencies", getAllResidencies);
