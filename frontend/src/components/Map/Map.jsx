@@ -3,12 +3,12 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import GeoCoderMarker from "../GeoCoderMarker/GeoCoderMarker";
 
 const Map = (address, city, country) => {
-  const position = [53.35, 18.8];
+  const position = [-1.286389, 36.817223];
   return (
     <MapContainer
       center={position}
-      zoom={1}
-      scrollWheelZoom={false}
+      zoom={10}
+      scrollWheelZoom={true}
       style={{
         height: "40vh",
         width: "100%",
@@ -16,7 +16,7 @@ const Map = (address, city, country) => {
         zIndex: 0,
       }}
     >
-      <TileLayer url='url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <GeoCoderMarker address={`${address} ${city} ${country}`} />
     </MapContainer>
   );
